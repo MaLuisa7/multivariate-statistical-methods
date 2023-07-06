@@ -1,0 +1,49 @@
+---
+title: "Prueba de normalidad para datos del ejercicio 3"
+author: "Ma. Luisa Argáez Salcido"
+date: "2023-02-13"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error= TRUE)
+```
+
+
+```{r}
+library(MVN)
+library(nortest)
+```
+
+## Lectura de datos
+```{r}
+path <-"C:/Users/Maria Luisa/OneDrive/Documentos/MasterDataScience/MEM/tarea4datos3.csv"
+data <- read.csv(path)
+head(data)
+```
+
+## Prueba de normalidad
+
+```{r}
+mvn(data, mvnTest = "royston", univariateTest = "CVM", univariatePlot = "histogram",
+    multivariatePlot = "qq", multivariateOutlierMethod = "adj",
+    showOutliers = TRUE, showNewData = TRUE)
+
+```
+
+## Conclusiones generales
+
+Dada la prueba de Royston en donde:
+
+$H_0 :$ Los datos no provienen de una distribución normal multivariada
+
+$H_1 :$ Los datos provienen de una distribución normal multivariada
+
+Como el pvalor = 0.1629 es mayor
+a alfa , el cual tiene un valor 0.05, se concluye que  los datos si provienen de una normal multivariada.
+
+Además en el gráfico de QQ-Plot la mayoria de los datos siguen la tendencia de la línea en 45° y en la prueba de normalidad univariada, todas las variables pasaron la prueba de normalidad al tener un p-valor mayor a alfa. 
+
+
+
